@@ -100,6 +100,8 @@ class FetchOrderItemForm extends Model
         $command->limit($this->getLimit());
         $command->offset($this->getOffset());
         $command->orderBy("$itemTable.id desc");
+        $command->with("order");
+        $command->with("customer");
         return $command;
     }
 

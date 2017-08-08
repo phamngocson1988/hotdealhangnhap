@@ -35,6 +35,9 @@ class UpdateOrderForm extends Model
             [['description', 'prepay', 'item_description'], 'trim'],
             ['item_id', 'each', 'rule' => ['required']],
             ['item_link', 'each', 'rule' => ['required']],
+            [['prepay', 'item_price'], 'filter', 'filter' => function ($value) {
+                return str_replace(',', '', $value);
+            }],
         ];
     }
 

@@ -3,7 +3,7 @@
 {use class='yii\helpers\ArrayHelper'}
 <div class="page-title">
   <div class="title_left">
-    <h3>Create New Post</h3>
+    <h3>Create New Order</h3>
   </div>
 </div>
 
@@ -74,7 +74,7 @@
 
         {$form->field($model, 'prepay', [
           'options' => ['class' => 'col-md-12 col-sm-12 col-xs-12 form-group has-feedback'],
-          'inputOptions' => ['class' => 'form-control has-feedback-left', 'placeholder' => 'Prepay'],
+          'inputOptions' => ['class' => 'form-control has-feedback-left', 'placeholder' => 'Prepay', 'role' => 'number'],
           'template' => '{input}<span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>'
         ])->textInput()}
       </div>
@@ -111,7 +111,7 @@
 
           {$form->field($model, 'item_price[]', [
             'options' => ['class' => 'col-md-6 col-sm-6 col-xs-12 form-group has-feedback'],
-            'inputOptions' => ['class' => 'form-control has-feedback-left', 'placeholder' => 'Price', 'type' => 'number'],
+            'inputOptions' => ['class' => 'form-control has-feedback-left', 'placeholder' => 'Price', 'role' => 'number'],
             'template' => '{input}<span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>'
           ])->textInput()}
 
@@ -183,35 +183,7 @@ $('#insertorderform-customer_email').keydown(function() {
   }
 });
 
-Number.prototype.formatMoney = function(c, d, t){
-var n = this, 
-    c = isNaN(c = Math.abs(c)) ? 2 : c, 
-    d = d == undefined ? "." : d, 
-    t = t == undefined ? "," : t, 
-    s = n < 0 ? "-" : "", 
-    i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
-    j = (j = i.length) > 3 ? j % 3 : 0;
-   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
- };
 
- function CurrencyFormatted(amount)
-{
-  var i = parseFloat(amount);
-  if(isNaN(i)) { i = 0.00; }
-  var minus = '';
-  if(i < 0) { minus = '-'; }
-  i = Math.abs(i);
-  i = parseInt((i + .005) * 100);
-  i = i / 100;
-  s = new String(i);
-  if(s.indexOf('.') < 0) { s += '.00'; }
-  if(s.indexOf('.') == (s.length - 2)) { s += '0'; }
-  s = minus + s;
-  return s;
-}
-$("#insertorderform-prepay").keyup(function() {
-var f = CurrencyFormatted($("#insertorderform-prepay").val());
-$(this).val(f);  
-}) 
+$('body input[role="number"]').number(true, 0);
 {/literal}
 {/registerJs}

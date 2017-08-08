@@ -67,6 +67,8 @@ class OrderController extends Controller
         $links = [
             'update_progress' => Url::to(['order/update-progress']),
         ];
+        
+
         return $this->render('index.tpl', [
             'models' => $models,
             'pages' => $pages,
@@ -79,6 +81,8 @@ class OrderController extends Controller
     {
         $model = new InsertOrderForm();
         if ($model->load(Yii::$app->request->post())) {
+            // $model->prepay + 1;
+            // dd($model);
             if ($model->save()) {
                 return $this->redirect(['order/index']);
             }
@@ -87,6 +91,11 @@ class OrderController extends Controller
         $links = [
             'find_customer' => Url::to(['customer/find-by-term'])
         ];
+
+        $this->view->registerJsFile(
+            '@web/js/jquery.number.min.js',
+            ['depends' => [\yii\web\JqueryAsset::className()]]
+        );
         return $this->render('create.tpl', [
             'model' => $model,
             'links' => $links
@@ -105,6 +114,10 @@ class OrderController extends Controller
         $links = [
             'find_customer' => Url::to(['customer/find-by-term'])
         ];
+        $this->view->registerJsFile(
+            '@web/js/jquery.number.min.js',
+            ['depends' => [\yii\web\JqueryAsset::className()]]
+        );
         return $this->render('update.tpl', [
             'model' => $model,
             'links' => $links

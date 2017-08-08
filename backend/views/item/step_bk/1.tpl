@@ -71,15 +71,25 @@
       </ul>
 
       {if $app->user->can('admin')}
+      {ActiveForm assign='form'}
+      {$form->field($model, 'id', ['inputOptions' => ['value' => $item->id]])->hiddenInput()->label(false)}
       <div class="step-data">
+        <div class="form-group">
+        {$form->field($model, 'order_number', [
+          'options' => ['class' => 'col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3 col-xs-12 form-group has-feedback'],
+          'inputOptions' => ['class' => 'form-control has-feedback-left', 'placeholder' => 'Order Number'],
+          'template' => '{input}<span class="fa fa-tachometer form-control-feedback left" aria-hidden="true"></span>'
+        ])->textInput()}
+
+        </div>
         <div class="ln_solid"></div>
         <div class="form-group">
           <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-            <a href="{url route=$links.update_progress id=$item->id progress=$item->getPrevProgress()}" class="btn btn-primary" type="button" action="prev">Prev Step</a>
             <a href="{url route=$links.update_progress id=$item->id progress=$item->getNextProgress()}" class="btn btn-primary" type="button" action="next">Next Step</a>
           </div>
         </div>
       </div>
+      {/ActiveForm}
       {/if}
     </div>
 

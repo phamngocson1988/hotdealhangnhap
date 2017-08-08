@@ -44,7 +44,7 @@
 
         {$form->field($model, 'prepay', [
           'options' => ['class' => 'col-md-12 col-sm-12 col-xs-12 form-group has-feedback'],
-          'inputOptions' => ['class' => 'form-control has-feedback-left', 'placeholder' => 'Prepay', 'type' => 'number'],
+          'inputOptions' => ['class' => 'form-control has-feedback-left', 'placeholder' => 'Prepay', 'role' => 'number'],
           'template' => '{input}<span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>'
         ])->textInput()}
       </div>
@@ -81,7 +81,7 @@
 
           {$form->field($model, 'item_price[]', [
             'options' => ['class' => 'col-md-6 col-sm-6 col-xs-12 form-group has-feedback'],
-            'inputOptions' => ['class' => 'form-control has-feedback-left', 'placeholder' => 'Price', 'type' => 'number', 'value' => $item->price],
+            'inputOptions' => ['class' => 'form-control has-feedback-left', 'placeholder' => 'Price', 'role' => 'number', 'value' => $item->price],
             'template' => '{input}<span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>'
           ])->textInput()}
 
@@ -108,5 +108,6 @@
 
 {registerJs}
 {literal}
+$('body input[role="number"]').number(true, 0);
 {/literal}
 {/registerJs}

@@ -19,21 +19,23 @@ use Yii;
  * @property string $tracking
  * @property integer $deliverer
  * @property integer $cod
+ * @property string $note
  * @property integer $progress
  */
 class OrderItem extends \yii\db\ActiveRecord
 {
-    const PROGRESS_UNORDER = 1;
-    const PROGRESS_ORDERED = 2;
+    const PROGRESS_UNORDER = 0;
+    const PROGRESS_ORDERED = 1;
+    const PROGRESS_US_TRANSFER = 2;
     const PROGRESS_US_STOCK = 3;
-    const PROGRESS_TRANSFER = 4;
+    const PROGRESS_VN_TRANSFER = 4;
     const PROGRESS_VN_STOCK = 5;
     const PROGRESS_SHIPPED = 6;
     const PROGRESS_COMPLETE = 7;
 
-    const DELIVERER_NONE = 0;
-    const DELIVERER_VIETTELPOST = 1;
-    const DELIVERER_GIAOHANGTIETKIEM = 2;
+    const DELIVERER_NONE = 1;
+    const DELIVERER_VIETTELPOST = 2;
+    const DELIVERER_GIAOHANGTIETKIEM = 3;
 
     /**
      * @inheritdoc
@@ -48,8 +50,9 @@ class OrderItem extends \yii\db\ActiveRecord
         return [
             self::PROGRESS_UNORDER => 'Unorder',
             self::PROGRESS_ORDERED => 'Ordered',
+            self::PROGRESS_US_TRANSFER => 'US Transfer',
             self::PROGRESS_US_STOCK => 'US Stock',
-            self::PROGRESS_TRANSFER => 'Transfer',
+            self::PROGRESS_VN_TRANSFER => 'VN Transfer',
             self::PROGRESS_VN_STOCK => 'VN Stock',
             self::PROGRESS_SHIPPED => 'Shipped',
             self::PROGRESS_COMPLETE => 'Complete',
@@ -121,5 +124,15 @@ class OrderItem extends \yii\db\ActiveRecord
     public function getOrder()
     {
         return $this->hasOne(Order::className(), ['id' => 'order_id']);
+    }
+
+    public function getWeight()
+    {
+        return (int)$this->weight;
+    }
+
+    public function getWeightFee()
+    {
+        return (int)$this->weight_fee;
     }
 }

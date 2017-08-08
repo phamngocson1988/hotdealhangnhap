@@ -73,10 +73,10 @@ class ItemController extends Controller
 
     public function actionUpdate($id)
     {
-    	$this->view->registerJsFile(
-            '@web/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js',
-            ['depends' => [\yii\web\JqueryAsset::className()]]
-        );
+    	// $this->view->registerJsFile(
+     //        '@web/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js',
+     //        ['depends' => [\yii\web\JqueryAsset::className()]]
+     //    );
         
         $model = new UpdateOrderItemForm();
         $model->loadData($id);
@@ -92,6 +92,10 @@ class ItemController extends Controller
         $links = [
             'update_progress' => Url::to(['item/update-progress']),
         ];
+        $this->view->registerJsFile(
+            '@web/js/jquery.number.min.js',
+            ['depends' => [\yii\web\JqueryAsset::className()]]
+        );
         return $this->render('update.tpl', [
             'item' => $item,
             'customer' => $customer,

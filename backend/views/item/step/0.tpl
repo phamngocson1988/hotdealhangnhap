@@ -13,7 +13,7 @@
           </a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="done" isdone="1">
+          <a href="javascript:void(0)" class="disabled" isdone="0">
             <span class="step_no">1</span>
             <span class="step_descr">
               <small>Ordered</small>
@@ -75,7 +75,6 @@
         <div class="ln_solid"></div>
         <div class="form-group">
           <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-            <a href="{url route=$links.update_progress id=$item->id progress=$item->getPrevProgress()}" class="btn btn-primary" type="button" action="prev">Prev Step</a>
             <a href="{url route=$links.update_progress id=$item->id progress=$item->getNextProgress()}" class="btn btn-primary" type="button" action="next">Next Step</a>
           </div>
         </div>

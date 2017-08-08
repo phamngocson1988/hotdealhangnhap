@@ -79,6 +79,11 @@
 	        <table class="table table-striped jambo_table bulk_action">
 	          <thead>
 	            <tr class="headings">
+		            <th class="column-title">Name </th>
+		            <th class="column-title">Phone </th>
+		            <th class="column-title">Address </th>
+		            <th class="column-title">Order Number </th>
+
 	              <th class="column-title">Link </th>
 	              <th class="column-title">Description </th>
 	              <th class="column-title">Price </th>
@@ -90,7 +95,13 @@
 
 	          <tbody>
 	          	{foreach $models as $model}
+	          		{$customer = $model->customer}
+	          		{$order = $model->order}
 	            <tr class="even pointer">
+		            <td class=" ">{$customer->name}</td>
+		            <td class=" ">{$customer->phone}</td>
+		            <td class=" ">{$customer->address}</td>
+		            <td class=" ">{$order->order_number}</td>
 	              <td class=" ">{$model->link}</td>
 	              <td class=" ">{$model->description}</td>
 	              <td class=" ">{number_format($model->price)}</td>

@@ -21,7 +21,7 @@
           </a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="disabled" isdone="0">
+          <a href="javascript:void(0)" class="done" isdone="1">
             <span class="step_no">2</span>
             <span class="step_descr">
               <small>US Transfer</small>
@@ -29,7 +29,7 @@
           </a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="disabled" isdone="0">
+          <a href="javascript:void(0)" class="done" isdone="1">
             <span class="step_no">3</span>
             <span class="step_descr">
               <small>US Stock</small>
@@ -37,7 +37,7 @@
           </a>
         </li>
         <li>
-          <a href="javascript:void(0)" class="disabled" isdone="0">
+          <a href="javascript:void(0)" class="done" isdone="1">
             <span class="step_no">4</span>
             <span class="step_descr">
               <small>VN Transfer</small>
@@ -70,7 +70,7 @@
         </li>
       </ul>
 
-      {if $app->user->can('admin')}
+      {if $app->user->can('vn_keeper')}
       <div class="step-data">
         <div class="ln_solid"></div>
         <div class="form-group">
